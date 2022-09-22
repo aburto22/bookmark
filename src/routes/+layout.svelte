@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from '$lib/header/Header.svelte';
-	import '../app.css';
+	import '@fontsource/open-sans';
+	import Header from '$lib/Header.svelte';
 </script>
 
 <Header />
@@ -9,37 +9,38 @@
 	<slot />
 </main>
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
+<footer>Created by Alejandro Aburto Salazar</footer>
 
 <style>
-	main {
-		flex: 1;
+	:global(:root) {
+		--darkBlue: #161b33;
+		--black: #161b33;
+		--white: #fffbff;
+		--lightBlue: #76e5fc;
+		--gray: #817f82;
+	}
+
+	:global(body) {
+		background-color: var(--darkBlue);
+		color: var(--white);
+		font-family: 'Open Sans';
+	}
+
+	:global(#app) {
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+		padding: 0.1rem;
+	}
+
+	main {
 		padding: 1rem;
-		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
 	}
 
 	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
+		margin-top: auto;
+		text-align: center;
+		padding: 1rem;
+		font-size: 0.8rem;
 	}
 </style>
