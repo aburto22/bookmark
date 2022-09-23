@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getLink, getName } from '$utils/links';
+	import { getLink, getName } from '$lib/utils/links';
 
 	export let tags: string[];
 </script>

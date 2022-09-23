@@ -1,15 +1,9 @@
-import db from '$db';
+import { getBookmarksByTag } from '$lib/server/links';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const links = await db.bookmark.findMany({
-		where: {
-			tags: {
-				has: params.slug
-			}
-		}
-	});
+	const links = await getBookmarksByTag(params.slug);
 
 	if (links.length === 0) {
 		throw error(404, 'Page not found');

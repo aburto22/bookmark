@@ -1,8 +1,8 @@
-import db from '$db';
+import { getBookmarks } from '$lib/server/links';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const links = await db.bookmark.findMany({});
+	const links = await getBookmarks();
 
 	return {
 		links
