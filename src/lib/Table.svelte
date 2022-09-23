@@ -1,9 +1,12 @@
 <script lang="ts">
 	import type { Bookmark } from '@prisma/client';
 	import Link from './Link.svelte';
+	import Form from './Form.svelte';
 
 	export let links: Bookmark[];
 </script>
+
+<Form />
 
 <table>
 	<thead>

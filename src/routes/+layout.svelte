@@ -26,6 +26,8 @@
 		--gray: #817f82;
 		--lightGray: #aaa8ab;
 		--yellow: #fedf1b;
+		--red: #850301;
+		--green: #2a8430;
 	}
 
 	:global(body) {
