@@ -1,10 +1,17 @@
+<script lang="ts">
+	import { getLink, getName } from '$utils/links';
+
+	export let tags: string[];
+</script>
+
 <header>
 	<a href="/">
 		<h1>Link bookmark</h1>
 	</a>
 	<nav>
-		<a href="/links">Links</a>
-		<a href="/about">About</a>
+		{#each tags as tag}
+			<a href={`${getLink(tag)}`}>{getName(tag)}</a>
+		{/each}
 	</nav>
 </header>
 

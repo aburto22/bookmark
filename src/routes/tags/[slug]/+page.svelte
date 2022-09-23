@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import Title from '$lib/Title.svelte';
+	import { getName } from '$utils/links';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const { links } = data;
+	const { links, slug } = data;
 </script>
 
 <section>
-	<Title>This is my page</Title>
+	<Title>{getName(slug)}</Title>
 	<ul>
 		{#each links as link}
 			<li>{link.name}</li>

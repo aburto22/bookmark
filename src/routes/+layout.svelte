@@ -1,9 +1,13 @@
 <script lang="ts">
 	import '@fontsource/open-sans';
 	import Header from '$lib/Header.svelte';
+	import type { LayoutServerData } from './$types';
+
+	export let data: LayoutServerData;
+	const { tags } = data;
 </script>
 
-<Header />
+<Header {tags} />
 
 <main>
 	<slot />
