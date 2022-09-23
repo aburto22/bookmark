@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Title from '$lib/Title.svelte';
+	import Table from '$lib/Table.svelte';
 
 	export let data: PageData;
 	const { links } = data;
@@ -8,11 +9,7 @@
 
 <section>
 	<Title>This is my page</Title>
-	<ul>
-		{#each links as link}
-			<li>{link.name}</li>
-		{/each}
-	</ul>
+	<Table {links} />
 </section>
 
 <style>

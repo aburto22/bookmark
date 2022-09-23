@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Title from '$lib/Title.svelte';
+	import Table from '$lib/Table.svelte';
 	import { getName } from '$utils/links';
 	import type { PageData } from './$types';
 
@@ -9,11 +10,7 @@
 
 <section>
 	<Title>{getName(slug)}</Title>
-	<ul>
-		{#each links as link}
-			<li>{link.name}</li>
-		{/each}
-	</ul>
+	<Table {links} />
 </section>
 
 <style>
