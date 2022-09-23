@@ -21,6 +21,7 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
+		"prisma": "^4.3.1",
 		"sass": "^1.55.0",
 		"svelte": "^3.46.0",
 		"svelte-check": "^2.7.1",
@@ -31,6 +32,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/open-sans": "^4.5.11"
+		"@fontsource/open-sans": "^4.5.11",
+		"@prisma/client": "^4.3.1"
 	}
 }
