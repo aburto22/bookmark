@@ -10,7 +10,9 @@
 <Header {tags} />
 
 <main>
-	<slot />
+	<section>
+		<slot />
+	</section>
 </main>
 
 <footer>Created by Alejandro Aburto Salazar</footer>
@@ -22,6 +24,8 @@
 		--white: #fffbff;
 		--lightBlue: #76e5fc;
 		--gray: #817f82;
+		--lightGray: #aaa8ab;
+		--yellow: #fedf1b;
 	}
 
 	:global(body) {
@@ -37,14 +41,25 @@
 		padding: 0.1rem;
 	}
 
+	:global(a) {
+		color: var(--yellow);
+	}
+
 	main {
 		padding: 1rem;
+	}
+
+	section {
+		padding: 1rem;
+		max-width: 50rem;
+		margin: 0 auto;
 	}
 
 	footer {
 		margin-top: auto;
 		text-align: center;
 		padding: 1rem;
-		font-size: 0.8rem;
+		font-size: 0.7rem;
+		color: var(--lightGray);
 	}
 </style>

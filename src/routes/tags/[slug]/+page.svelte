@@ -8,13 +8,5 @@
 	const { links, slug } = data;
 </script>
 
-<section>
-	<Title>{getName(slug)}</Title>
-	<Table {links} />
-</section>
-
-<style>
-	section {
-		padding: 1rem;
-	}
-</style>
+<Title>{getName(slug)}</Title>
+<Table {links} />

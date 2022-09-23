@@ -22,6 +22,7 @@
 
 	a {
 		display: block;
+		color: var(--white);
 	}
 
 	h1 {
