@@ -3,12 +3,19 @@
 	import Table from '$lib/components/Table.svelte';
 	import FormContainer from '$lib/components/FormContainer.svelte';
 	import { getName } from '$lib/utils/links';
-	import type { PageData, ActionData } from './$types';
+	import type { PageData } from './$types';
+	import type { Bookmark } from '@prisma/client';
 
 	export let data: PageData;
-	export let form: ActionData;
+
+	const addBookmark = async (event: CustomEvent<Bookmark>) => {
+		data = {
+			...data,
+			bookmarks: [event.detail, ...data.bookmarks]
+		};
+	};
 </script>
 
 <Title>{data.slug ? getName(data.slug) : 'All bookmarks'}</Title>
-<FormContainer tag={data.slug} formResponse={form} />
+<FormContainer tag={data.slug} on:addBookmark={addBookmark} />
 <Table bookmarks={data.bookmarks} />

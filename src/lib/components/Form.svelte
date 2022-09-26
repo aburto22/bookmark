@@ -1,29 +1,56 @@
 <script lang="ts">
 	import Button from './Button.svelte';
+	import { createEventDispatcher } from 'svelte';
+	import { enhance } from '$app/forms';
+	import { parseTags } from '$lib/utils/form';
+	import type { BookmarkFormData } from 'src/types';
+	import { post } from '$lib/utils/fetch';
+	import type { Bookmark } from '@prisma/client';
+
+	const dispatch = createEventDispatcher();
 
 	export let defaultTag: string = '';
-	export let closeForm: () => void;
-	export let formResponse: any;
 
-	$: name = formResponse?.data?.name || '';
-	$: tags = formResponse?.data?.tags || defaultTag;
-	$: description = formResponse?.data?.description || '';
-	$: url = formResponse?.data?.url || '';
+	let name = '';
+	let tags = defaultTag;
+	let description = '';
+	let url = '';
+	let error = '';
 
 	const resetForm = () => {
-		name = formResponse?.data?.name || '';
-		tags = formResponse?.data?.tags || defaultTag;
-		description = formResponse?.data?.description || '';
-		url = formResponse?.data?.url || '';
+		name = '';
+		tags = defaultTag;
+		description = '';
+		url = '';
+		error = '';
 	};
 
 	const handleCancel = () => {
 		resetForm();
-		closeForm();
+		dispatch('closeForm');
+	};
+
+	const handleSubmit = async () => {
+		const formData: BookmarkFormData = {
+			name,
+			tags: parseTags(tags),
+			description,
+			url
+		};
+
+		const res = await post<Bookmark>('/api/bookmarks', formData);
+
+		if (!res.success) {
+			error = res.message;
+			return;
+		}
+
+		dispatch('addBookmark', formData);
+		handleCancel();
 	};
 </script>
 
-<form method="POST">
+<form on:submit|preventDefault={handleSubmit} use:enhance>
 	<label for="name">
 		Name:
 		<input id="name" name="name" bind:value={name} maxlength="20" required />
@@ -40,6 +67,7 @@
 		Short description
 		<input id="description" name="description" bind:value={description} maxlength="50" />
 	</label>
+	<p>{error}</p>
 	<fieldset>
 		<Button type="submit" styleType="success">Save</Button>
 		<Button on:click={handleCancel} type="button" styleType="danger">Cancel</Button>
@@ -79,5 +107,11 @@
 		gap: 1rem;
 		justify-content: center;
 		margin-top: 0.5rem;
+	}
+
+	p {
+		font-size: 0.8rem;
+		text-align: center;
+		color: var(--red);
 	}
 </style>

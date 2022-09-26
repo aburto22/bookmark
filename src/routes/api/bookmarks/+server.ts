@@ -1,7 +1,8 @@
 import db from '$lib/server/db';
 import { getBookmarks } from '$lib/server/links';
-import { parseTags, validateBookmark } from '$lib/utils/form';
+import { validateBookmark } from '$lib/utils/form';
 import { error, json } from '@sveltejs/kit';
+import type { BookmarkFormData } from 'src/types';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url }) => {
@@ -11,19 +12,12 @@ export const GET: RequestHandler = async ({ url }) => {
 };
 
 export const POST: RequestHandler = async ({ request }) => {
-	const formData = await request.formData();
+	const formData: BookmarkFormData = await request.json();
 
-	const bookmarkData = {
-		name: formData.get('name')?.toString(),
-		description: formData.get('description')?.toString(),
-		url: formData.get('url')?.toString(),
-		tags: parseTags(formData.get('tags')?.toString())
-	};
-
-	const result = validateBookmark(bookmarkData);
+	const result = validateBookmark(formData);
 
 	if (!result.success) {
-		return error(400, 'invalid data');
+		throw error(400, 'invalid data');
 	}
 
 	const newBookmark = await db.bookmark.create({

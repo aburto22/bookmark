@@ -5,17 +5,14 @@
 
 	let showing = false;
 	export let tag: string;
-	export let formResponse: any = {};
-
-	const closeForm = () => (showing = false);
 </script>
 
 <div>
 	<Button on:click={() => (showing = !showing)}>
 		<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
 	</Button>
-	{#if showing || (formResponse && !formResponse.success)}
-		<Form defaultTag={tag} {closeForm} {formResponse} />
+	{#if showing}
+		<Form defaultTag={tag} on:closeForm={() => (showing = false)} on:addBookmark />
 	{/if}
 </div>
 

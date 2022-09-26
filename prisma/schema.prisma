@@ -22,7 +22,7 @@ model Bookmark {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   tags        String[]
-  link        String
+  url         String
   description String?
   ownerId     String
   owner       User     @relation(fields: [ownerId], references: [id])

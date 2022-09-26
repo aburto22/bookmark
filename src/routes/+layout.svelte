@@ -26,7 +26,7 @@
 		--gray: #817f82;
 		--lightGray: #aaa8ab;
 		--yellow: #fedf1b;
-		--red: #850301;
+		--red: #e10704;
 		--green: #2a8430;
 	}
 

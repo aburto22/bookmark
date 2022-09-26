@@ -5,7 +5,7 @@
 </script>
 
 <tr>
-	<td><a href={bookmark.link} target="_blank">{bookmark.name}</a></td>
+	<td><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
 	<td>{bookmark.tags.join(', ')}</td>
 	<td>{bookmark.description}</td>
 </tr>
