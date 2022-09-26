@@ -7,7 +7,12 @@
 	import { post } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
 
-	const dispatch = createEventDispatcher();
+	type Dispatch = {
+		addBookmark: Bookmark;
+		closeForm: never;
+	};
+
+	const dispatch = createEventDispatcher<Dispatch>();
 
 	export let defaultTag: string = '';
 
