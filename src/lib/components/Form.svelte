@@ -45,7 +45,7 @@
 			return;
 		}
 
-		dispatch('addBookmark', formData);
+		dispatch('addBookmark', res.data);
 		handleCancel();
 	};
 </script>
