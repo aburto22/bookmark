@@ -1,6 +1,12 @@
 import db from './db';
 
-export const getBookmarks = async () => db.bookmark.findMany({});
+export const getBookmarks = async (tag?: string | null) => {
+	const searchParams = tag ? { tags: { has: tag } } : {};
+
+	return db.bookmark.findMany({
+		where: searchParams
+	});
+};
 
 export const getTags = async () => {
 	const data = await db.bookmark.findMany({

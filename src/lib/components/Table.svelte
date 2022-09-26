@@ -1,22 +1,22 @@
 <script lang="ts">
 	import type { Bookmark } from '@prisma/client';
-	import Link from './Link.svelte';
+	import BookmarkRow from './BookmarkRow.svelte';
 	import Form from './Form.svelte';
 
-	export let links: Bookmark[];
+	export let bookmarks: Bookmark[];
 </script>
 
 <Form />
 
 <table>
 	<thead>
-		<th> Name </th>
+		<th>Name</th>
 		<th>Tags</th>
 		<th>Description</th>
 	</thead>
 	<tbody>
-		{#each links as link}
-			<Link {link} />
+		{#each bookmarks as bookmark}
+			<BookmarkRow {bookmark} />
 		{/each}
 	</tbody>
 </table>

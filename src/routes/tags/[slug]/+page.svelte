@@ -8,4 +8,4 @@
 </script>
 
 <Title>{getName(data.slug)}</Title>
-<Table links={data.links} />
+<Table bookmarks={data.bookmarks} />

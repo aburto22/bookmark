@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { Bookmark } from '@prisma/client';
 
-	export let link: Bookmark;
+	export let bookmark: Bookmark;
 </script>
 
 <tr>
-	<td><a href={link.link} target="_blank">{link.name}</a></td>
-	<td>{link.tags.join(', ')}</td>
-	<td>{link.description}</td>
+	<td><a href={bookmark.link} target="_blank">{bookmark.name}</a></td>
+	<td>{bookmark.tags.join(', ')}</td>
+	<td>{bookmark.description}</td>
 </tr>
 
 <style>

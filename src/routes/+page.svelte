@@ -6,5 +6,5 @@
 	export let data: PageData;
 </script>
 
-<Title>All links</Title>
-<Table links={data.links} />
+<Title>All bookmarks</Title>
+<Table bookmarks={data.bookmarks} />

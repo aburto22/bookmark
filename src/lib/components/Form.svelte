@@ -26,7 +26,7 @@
 		<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
 	</Button>
 	{#if showing}
-		<form action="/api/bookmarks" method="POST">
+		<form method="POST">
 			<label for="name">
 				Name:
 				<input id="name" name="name" bind:value={name} maxlength="20" required />
