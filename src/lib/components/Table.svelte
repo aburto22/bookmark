@@ -1,13 +1,9 @@
 <script lang="ts">
 	import type { Bookmark } from '@prisma/client';
 	import BookmarkRow from './BookmarkRow.svelte';
-	import Form from './Form.svelte';
 
 	export let bookmarks: Bookmark[];
-	export let tag: string;
 </script>
-
-<Form defaultTag={tag} />
 
 <table>
 	<thead>

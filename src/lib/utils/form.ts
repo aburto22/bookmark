@@ -1,4 +1,23 @@
+import { invalid } from '@sveltejs/kit';
 import z from 'zod';
+
+const bookmarkSchema = z.object({
+	name: z.string().max(20),
+	link: z.string().url(),
+	description: z.optional(z.string().max(50)),
+	tags: z.array(z.string().max(15))
+});
+
+type BookmarkSchema = z.infer<typeof bookmarkSchema>;
+
+const formDataSchema = z.object({
+	name: z.string().max(20),
+	link: z.string().url(),
+	description: z.optional(z.string().max(50)),
+	tags: z.string()
+});
+
+type FormDataSchema = z.infer<typeof formDataSchema>;
 
 export const parseTags = (tagsString: string | undefined) => {
 	if (!tagsString) {
@@ -12,15 +31,12 @@ export const parseTags = (tagsString: string | undefined) => {
 	);
 };
 
-const linkSchema = z.object({
-	name: z.string().max(20),
-	link: z.string().url(),
-	description: z.optional(z.string().max(50)),
-	tags: z.array(z.string().max(15))
-});
+export const sendError = (message: string, data: Partial<FormDataSchema>) => {
+	invalid(400, { message, data });
+};
 
-export const linkValidation = (data: unknown) => {
-	const result = linkSchema.safeParse(data);
+export const validateBookmark = (data: Partial<BookmarkSchema>) => {
+	const result = bookmarkSchema.safeParse(data);
 
 	if (result.success) {
 		return result;

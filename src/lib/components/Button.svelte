@@ -1,12 +1,14 @@
 <script lang="ts">
-	export let type: 'success' | 'danger' | 'normal' = 'normal';
+	export let styleType: 'success' | 'danger' | 'normal' = 'normal';
+	export let type: 'button' | 'submit' = 'button';
 </script>
 
 <button
 	on:click
-	class:normal={type === 'normal'}
-	class:success={type === 'success'}
-	class:danger={type === 'danger'}
+	class:normal={styleType === 'normal'}
+	class:success={styleType === 'success'}
+	class:danger={styleType === 'danger'}
+	{type}
 >
 	<slot />
 </button>

@@ -1,10 +1,9 @@
 <script lang="ts">
-	import Svg from './Svg.svelte';
 	import Button from './Button.svelte';
 
 	export let defaultTag: string = '';
+	export let closeForm: () => void;
 
-	let showing = false;
 	let name: string;
 	$: tags = defaultTag;
 	let description: string;
@@ -19,49 +18,34 @@
 
 	const handleCancel = () => {
 		resetForm();
-		showing = false;
+		closeForm();
 	};
 </script>
 
-<div>
-	<Button on:click={() => (showing = !showing)}>
-		<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
-	</Button>
-	{#if showing}
-		<form method="POST">
-			<label for="name">
-				Name:
-				<input id="name" name="name" bind:value={name} maxlength="20" required />
-			</label>
-			<label for="url">
-				Url:
-				<input id="url" name="url" bind:value={url} required />
-			</label>
-			<label for="tags">
-				Tags:
-				<input id="tags" name="tags" bind:value={tags} maxlength="30" />
-			</label>
-			<label for="description">
-				Short description
-				<input id="description" name="description" bind:value={description} maxlength="50" />
-			</label>
-			<fieldset>
-				<Button type="success">Save</Button>
-				<Button on:click={handleCancel} type="danger">Cancel</Button>
-			</fieldset>
-		</form>
-	{/if}
-</div>
+<form method="POST">
+	<label for="name">
+		Name:
+		<input id="name" name="name" bind:value={name} maxlength="20" required />
+	</label>
+	<label for="url">
+		Url:
+		<input id="url" name="url" bind:value={url} required />
+	</label>
+	<label for="tags">
+		Tags:
+		<input id="tags" name="tags" bind:value={tags} maxlength="30" />
+	</label>
+	<label for="description">
+		Short description
+		<input id="description" name="description" bind:value={description} maxlength="50" />
+	</label>
+	<fieldset>
+		<Button type="submit" styleType="success">Save</Button>
+		<Button on:click={handleCancel} type="button" styleType="danger">Cancel</Button>
+	</fieldset>
+</form>
 
 <style>
-	div {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-bottom: 2rem;
-		gap: 1rem;
-	}
-
 	form {
 		display: flex;
 		flex-direction: column;
