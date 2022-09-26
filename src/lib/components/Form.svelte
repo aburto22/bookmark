@@ -3,17 +3,18 @@
 
 	export let defaultTag: string = '';
 	export let closeForm: () => void;
+	export let formResponse: any;
 
-	let name: string;
-	$: tags = defaultTag;
-	let description: string;
-	let url: string;
+	$: name = formResponse?.data?.name || '';
+	$: tags = formResponse?.data?.tags || defaultTag;
+	$: description = formResponse?.data?.description || '';
+	$: url = formResponse?.data?.url || '';
 
 	const resetForm = () => {
-		name = '';
-		tags = defaultTag;
-		description = '';
-		url = '';
+		name = formResponse?.data?.name || '';
+		tags = formResponse?.data?.tags || defaultTag;
+		description = formResponse?.data?.description || '';
+		url = formResponse?.data?.url || '';
 	};
 
 	const handleCancel = () => {

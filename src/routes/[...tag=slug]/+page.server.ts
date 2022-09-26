@@ -30,9 +30,11 @@ export const actions: Actions = {
 		const validationResult = validateBookmark(data);
 
 		if (!validationResult.success) {
-			console.log(validationResult.error);
-			invalid(400, { errors: validationResult.error, data: initialData });
-			return;
+			return invalid(400, { errors: validationResult.error, data: initialData, success: false });
 		}
+
+		return {
+			success: true
+		};
 	}
 };

@@ -1,4 +1,3 @@
-import { invalid } from '@sveltejs/kit';
 import z from 'zod';
 
 const bookmarkSchema = z.object({
@@ -29,10 +28,6 @@ export const parseTags = (tagsString: string | undefined) => {
 			.map((t) => t.trim())
 			.map((t) => t.replace(/ /g, '-')) || []
 	);
-};
-
-export const sendError = (message: string, data: Partial<FormDataSchema>) => {
-	invalid(400, { message, data });
 };
 
 export const validateBookmark = (data: Partial<BookmarkSchema>) => {
