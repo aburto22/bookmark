@@ -1,4 +1,4 @@
-export const getLink = (tag: string): string => `/tags/${tag}`;
+export const getLink = (tag: string): string => `/${tag}`;
 
 export const getName = (tag: string): string =>
 	tag.replace(/(-|\b)([a-z])/g, (match, p1, p2) => {

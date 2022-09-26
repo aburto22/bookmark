@@ -4,9 +4,10 @@
 	import Form from './Form.svelte';
 
 	export let bookmarks: Bookmark[];
+	export let tag: string;
 </script>
 
-<Form />
+<Form defaultTag={tag} />
 
 <table>
 	<thead>

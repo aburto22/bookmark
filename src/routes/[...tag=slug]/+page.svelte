@@ -7,5 +7,5 @@
 	export let data: PageData;
 </script>
 
-<Title>{getName(data.slug)}</Title>
-<Table bookmarks={data.bookmarks} />
+<Title>{data.slug ? getName(data.slug) : 'All bookmarks'}</Title>
+<Table bookmarks={data.bookmarks} tag={data.slug} />

@@ -2,15 +2,17 @@
 	import Svg from './Svg.svelte';
 	import Button from './Button.svelte';
 
+	export let defaultTag: string = '';
+
 	let showing = false;
 	let name: string;
-	let tags: string;
+	$: tags = defaultTag;
 	let description: string;
 	let url: string;
 
 	const resetForm = () => {
 		name = '';
-		tags = '';
+		tags = defaultTag;
 		description = '';
 		url = '';
 	};
