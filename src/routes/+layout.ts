@@ -1,9 +1,10 @@
+import type { Bookmark } from '@prisma/client';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ fetch }) => {
-	const tags: string[] = await fetch('/api/bookmarks/tags').then((res) => res.json());
+	const bookmarks: Bookmark[] = await fetch('/api/bookmarks').then((res) => res.json());
 
 	return {
-		tags
+		bookmarks
 	};
 };

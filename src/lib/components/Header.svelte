@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getLink, getName } from '$lib/utils/links';
-
-	export let tags: string[];
+	import tagsStore from '$lib/stores/tags';
 </script>
 
 <header>
@@ -9,7 +8,7 @@
 		<h1>Link bookmark</h1>
 	</a>
 	<nav>
-		{#each tags as tag}
+		{#each $tagsStore as tag}
 			<a href={`${getLink(tag)}`}>{getName(tag)}</a>
 		{/each}
 	</nav>

@@ -20,4 +20,6 @@ const send = async <T>(path: string, method = 'GET', data = {}): Promise<FetchRe
 	return { data: json, success: true };
 };
 
+export const get = async <T>(path: string) => send<T>(path);
+
 export const post = async <T>(path: string, data = {}) => send<T>(path, 'POST', data);

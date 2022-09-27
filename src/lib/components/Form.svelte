@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { enhance } from '$app/forms';
 	import { parseTags } from '$lib/utils/form';
 	import type { BookmarkFormData } from 'src/types';
 	import { post } from '$lib/utils/fetch';
@@ -21,6 +20,12 @@
 	let description = '';
 	let url = '';
 	let error = '';
+
+	const updateTags = (slug: string) => {
+		tags = slug;
+	};
+
+	$: updateTags(defaultTag);
 
 	const resetForm = () => {
 		name = '';
@@ -55,7 +60,7 @@
 	};
 </script>
 
-<form on:submit|preventDefault={handleSubmit} use:enhance>
+<form on:submit|preventDefault={handleSubmit}>
 	<label for="name">
 		Name:
 		<input id="name" name="name" bind:value={name} maxlength="20" required />
@@ -72,7 +77,9 @@
 		Short description
 		<input id="description" name="description" bind:value={description} maxlength="50" />
 	</label>
-	<p>{error}</p>
+	{#if error}
+		<p>{error}</p>
+	{/if}
 	<fieldset>
 		<Button type="submit" styleType="success">Save</Button>
 		<Button on:click={handleCancel} type="button" styleType="danger">Cancel</Button>

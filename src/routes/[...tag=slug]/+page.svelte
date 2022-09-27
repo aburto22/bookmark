@@ -5,17 +5,19 @@
 	import { getName } from '$lib/utils/links';
 	import type { PageData } from './$types';
 	import type { Bookmark } from '@prisma/client';
+	import bookmarksStore from '$lib/stores/bookmarks';
 
 	export let data: PageData;
 
+	$: filteredBookmarks = data.slug
+		? $bookmarksStore.filter((b) => b.tags.includes(data.slug))
+		: $bookmarksStore;
+
 	const addBookmark = async (event: CustomEvent<Bookmark>) => {
-		data = {
-			...data,
-			bookmarks: [event.detail, ...data.bookmarks]
-		};
+		bookmarksStore.update((current) => [event.detail, ...current]);
 	};
 </script>
 
 <Title>{data.slug ? getName(data.slug) : 'All bookmarks'}</Title>
 <FormContainer tag={data.slug} on:addBookmark={addBookmark} />
-<Table bookmarks={data.bookmarks} />
+<Table bookmarks={filteredBookmarks} />

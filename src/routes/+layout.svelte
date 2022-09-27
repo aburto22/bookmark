@@ -1,13 +1,14 @@
 <script lang="ts">
 	import '@fontsource/open-sans';
 	import Header from '$lib/components/Header.svelte';
+	import bookmarksStore from '$lib/stores/bookmarks';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
-	const { tags } = data;
+	$: bookmarksStore.set(data.bookmarks);
 </script>
 
-<Header {tags} />
+<Header />
 
 <main>
 	<section>
