@@ -26,4 +26,5 @@ model Bookmark {
   description String?
   ownerId     String
   owner       User     @relation(fields: [ownerId], references: [id])
+  createdAt   String
 }

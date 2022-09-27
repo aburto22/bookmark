@@ -1,5 +1,4 @@
-import db from '$lib/server/db';
-import { getBookmarks } from '$lib/server/links';
+import { createBookmark, getBookmarks } from '$lib/server/utils/links';
 import { validateBookmark } from '$lib/utils/form';
 import { error, json } from '@sveltejs/kit';
 import type { BookmarkFormData } from 'src/types';
@@ -20,12 +19,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		throw error(400, 'invalid data');
 	}
 
-	const newBookmark = await db.bookmark.create({
-		data: {
-			...result.data,
-			ownerId: '632d8dea3f1cbc1dd741ea95'
-		}
-	});
+	const newBookmark = await createBookmark(result.data);
 
 	return json(newBookmark);
 };

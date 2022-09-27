@@ -1,3 +1,7 @@
 import type { Bookmark } from '@prisma/client';
 
-export type BookmarkFormData = Pick<Bookmark, 'name' | 'description' | 'tags' | 'url'>;
+export type BookmarkFormData =
+	| Pick<Bookmark, 'name' | 'description' | 'tags' | 'url'>
+	| {
+			description?: string;
+	  };
