@@ -1,13 +1,35 @@
 <script lang="ts">
+	import { del } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
+	import { createEventDispatcher } from 'svelte';
+	import Button from './Button.svelte';
+	import Svg from './Svg.svelte';
 
 	export let bookmark: Bookmark;
+
+	const dispatch = createEventDispatcher<{ deleteBookmark: string }>();
+
+	const handleDelete = async () => {
+		const res = await del<Bookmark>(`/api/bookmarks/${bookmark.id}`);
+
+		if (!res.success) {
+			console.error(res.message);
+			return;
+		}
+
+		dispatch('deleteBookmark', res.data.id);
+	};
 </script>
 
 <tr>
 	<td><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
 	<td>{bookmark.tags.join(', ')}</td>
 	<td>{bookmark.description}</td>
+	<td class="no-border">
+		<Button type="button" size="small" styleType="danger" on:click={handleDelete}>
+			<Svg name="delete" width="1.2rem" height="1.2rem" />
+		</Button>
+	</td>
 </tr>
 
 <style>
@@ -20,5 +42,9 @@
 		border: 1px solid var(--lightGray);
 		font-size: 0.9rem;
 		word-break: break-all;
+	}
+
+	.no-border {
+		border: none;
 	}
 </style>

@@ -9,7 +9,7 @@ const send = async <T>(path: string, method = 'GET', data = {}): Promise<FetchRe
 				},
 				body: JSON.stringify(data)
 		  }
-		: {};
+		: { method };
 
 	const res = await fetch(path, options);
 	const json = await res.json();
@@ -23,3 +23,5 @@ const send = async <T>(path: string, method = 'GET', data = {}): Promise<FetchRe
 export const get = async <T>(path: string) => send<T>(path);
 
 export const post = async <T>(path: string, data = {}) => send<T>(path, 'POST', data);
+
+export const del = async <T>(path: string) => send<T>(path, 'DELETE');

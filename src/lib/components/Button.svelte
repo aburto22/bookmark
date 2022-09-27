@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let styleType: 'success' | 'danger' | 'normal' = 'normal';
 	export let type: 'button' | 'submit' = 'button';
+	export let size: 'regular' | 'small' = 'regular';
 </script>
 
 <button
@@ -8,21 +9,23 @@
 	class:normal={styleType === 'normal'}
 	class:success={styleType === 'success'}
 	class:danger={styleType === 'danger'}
+	class:regular={size === 'regular'}
+	class:small={size === 'small'}
 	{type}
 >
 	<slot />
 </button>
 
-<style>
+<style lang="scss">
 	button {
-		padding: 0.7rem;
 		display: flex;
 		align-items: center;
 		width: max-content;
-		font-size: 0.9rem;
-		font-weight: 800;
-		border-radius: 0.5rem;
-		gap: 0.3rem;
+		transition: transform 200ms;
+
+		&:hover {
+			transform: scale(1.07);
+		}
 	}
 
 	.normal {
@@ -38,5 +41,21 @@
 	.danger {
 		background-color: var(--red);
 		color: var(--white);
+	}
+
+	.regular {
+		padding: 0.7rem;
+		font-size: 0.9rem;
+		font-weight: 800;
+		border-radius: 0.5rem;
+		gap: 0.3rem;
+	}
+
+	.small {
+		padding: 0.3rem;
+		font-size: 0.7rem;
+		font-weight: 800;
+		border-radius: 0.3rem;
+		gap: 0.2rem;
 	}
 </style>

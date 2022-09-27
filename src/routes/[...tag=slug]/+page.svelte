@@ -16,8 +16,23 @@
 	const addBookmark = async (event: CustomEvent<Bookmark>) => {
 		bookmarksStore.update((current) => [event.detail, ...current]);
 	};
+
+	const deleteBookmark = async (event: CustomEvent<string>) => {
+		bookmarksStore.update((current) => current.filter((b) => b.id != event.detail));
+	};
 </script>
 
 <Title>{data.slug ? getName(data.slug) : 'All bookmarks'}</Title>
 <FormContainer tag={data.slug} on:addBookmark={addBookmark} />
-<Table bookmarks={filteredBookmarks} />
+{#if filteredBookmarks.length > 0}
+	<Table bookmarks={filteredBookmarks} on:deleteBookmark={deleteBookmark} />
+{:else}
+	<p>There are no bookmarks</p>
+{/if}
+
+<style>
+	p {
+		text-align: center;
+		font-size: 1.2rem;
+	}
+</style>

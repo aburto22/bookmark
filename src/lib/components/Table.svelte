@@ -10,10 +10,11 @@
 		<th>Name</th>
 		<th>Tags</th>
 		<th>Description</th>
+		<th class="no-border" />
 	</thead>
 	<tbody>
 		{#each bookmarks as bookmark}
-			<BookmarkRow {bookmark} />
+			<BookmarkRow {bookmark} on:deleteBookmark />
 		{/each}
 	</tbody>
 </table>
@@ -37,5 +38,9 @@
 		color: var(--lightGray);
 		font-size: 0.8rem;
 		font-weight: 700;
+	}
+
+	.no-border {
+		border: none;
 	}
 </style>
