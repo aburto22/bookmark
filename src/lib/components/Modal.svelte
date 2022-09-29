@@ -18,9 +18,7 @@
 	});
 </script>
 
-<div on:click={() => (showing = true)}>
-	<slot name="button" />
-</div>
+<slot name="button" handleClick={() => (showing = true)} />
 {#if showing}
 	<div class="background " on:click={() => (showing = false)} />
 	<dialog>

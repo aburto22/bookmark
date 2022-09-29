@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Title from '$lib/components/Title.svelte';
 	import Table from '$lib/components/Table.svelte';
-	import FormContainer from '$lib/components/FormContainer.svelte';
+	import AddFormContainer from '$lib/components/AddFormContainer.svelte';
 	import { getName } from '$lib/utils/links';
 	import type { PageData } from './$types';
 	import type { Bookmark } from '@prisma/client';
@@ -23,7 +23,7 @@
 </script>
 
 <Title>{data.slug ? getName(data.slug) : 'All bookmarks'}</Title>
-<FormContainer tag={data.slug} on:addBookmark={addBookmark} />
+<AddFormContainer tag={data.slug} on:addBookmark={addBookmark} />
 {#if filteredBookmarks.length > 0}
 	<Table bookmarks={filteredBookmarks} on:deleteBookmark={deleteBookmark} />
 {:else}

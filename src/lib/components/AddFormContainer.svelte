@@ -9,9 +9,11 @@
 
 <div>
 	<Modal>
-		<Button slot="button">
-			<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
-		</Button>
+		<svelte:fragment slot="button" let:handleClick>
+			<Button on:click={handleClick}>
+				<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
+			</Button>
+		</svelte:fragment>
 		<svelte:fragment slot="form" let:onCancel let:onSuccess>
 			<Form defaultTag={tag} on:addBookmark {onSuccess} {onCancel} />
 		</svelte:fragment>
