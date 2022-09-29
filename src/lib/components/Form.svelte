@@ -14,6 +14,8 @@
 	const dispatch = createEventDispatcher<Dispatch>();
 
 	export let defaultTag: string = '';
+	export let onCancel = () => {};
+	export let onSuccess = () => {};
 
 	let name = '';
 	let tags = defaultTag;
@@ -42,7 +44,7 @@
 
 	const handleCancel = () => {
 		resetForm();
-		dispatch('closeForm');
+		onCancel();
 	};
 
 	const handleSubmit = async () => {
@@ -61,11 +63,13 @@
 		}
 
 		dispatch('addBookmark', res.data);
-		handleCancel();
+		resetForm();
+		onSuccess();
 	};
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
+	<h2>Add bookmark</h2>
 	<label for="name">
 		Name:
 		<input id="name" name="name" bind:value={name} maxlength="20" required bind:this={input} />
@@ -100,6 +104,13 @@
 		margin: 0 auto;
 		gap: 0.5rem;
 		padding: 0 1rem;
+	}
+
+	h2 {
+		color: var(--white);
+		text-align: center;
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
 	}
 
 	label {

@@ -1,19 +1,21 @@
 <script lang="ts">
 	import Button from './Button.svelte';
 	import Form from './Form.svelte';
+	import Modal from './Modal.svelte';
 	import Svg from './Svg.svelte';
 
-	let showing = false;
 	export let tag: string;
 </script>
 
 <div>
-	<Button on:click={() => (showing = !showing)}>
-		<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
-	</Button>
-	{#if showing}
-		<Form defaultTag={tag} on:closeForm={() => (showing = false)} on:addBookmark />
-	{/if}
+	<Modal>
+		<Button slot="button">
+			<Svg name="add" height="1.1rem" width="1.1rem" /> Add link
+		</Button>
+		<svelte:fragment slot="form" let:onCancel let:onSuccess>
+			<Form defaultTag={tag} on:addBookmark {onSuccess} {onCancel} />
+		</svelte:fragment>
+	</Modal>
 </div>
 
 <style>
