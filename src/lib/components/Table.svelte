@@ -42,5 +42,6 @@
 
 	.no-border {
 		border: none;
+		width: 0;
 	}
 </style>

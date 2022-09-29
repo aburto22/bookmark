@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { parseTags } from '$lib/utils/form';
 	import type { BookmarkFormData } from 'src/types';
 	import { post } from '$lib/utils/fetch';
@@ -20,6 +20,11 @@
 	let description = '';
 	let url = '';
 	let error = '';
+	let input: HTMLInputElement;
+
+	onMount(() => {
+		input.focus();
+	});
 
 	const updateTags = (slug: string) => {
 		tags = slug;
@@ -63,7 +68,7 @@
 <form on:submit|preventDefault={handleSubmit}>
 	<label for="name">
 		Name:
-		<input id="name" name="name" bind:value={name} maxlength="20" required />
+		<input id="name" name="name" bind:value={name} maxlength="20" required bind:this={input} />
 	</label>
 	<label for="url">
 		Url:
