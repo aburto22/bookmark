@@ -24,4 +24,6 @@ export const get = async <T>(path: string) => send<T>(path);
 
 export const post = async <T>(path: string, data = {}) => send<T>(path, 'POST', data);
 
+export const put = async <T>(path: string, data = {}) => send<T>(path, 'PUT', data);
+
 export const del = async <T>(path: string) => send<T>(path, 'DELETE');

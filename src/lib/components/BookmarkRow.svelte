@@ -1,13 +1,19 @@
 <script lang="ts">
-	import { del } from '$lib/utils/fetch';
+	import { del, put } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
 	import { createEventDispatcher } from 'svelte';
 	import Button from './Button.svelte';
+	import Form from './Form.svelte';
+	import Modal from './Modal.svelte';
 	import Svg from './Svg.svelte';
 
 	export let bookmark: Bookmark;
 
-	const dispatch = createEventDispatcher<{ deleteBookmark: string }>();
+	type Dispatch = {
+		deleteBookmark: string;
+	};
+
+	const dispatch = createEventDispatcher<Dispatch>();
 
 	const handleDelete = async () => {
 		const res = await del<Bookmark>(`/api/bookmarks/${bookmark.id}`);
@@ -26,6 +32,16 @@
 	<td>{bookmark.tags.join(', ')}</td>
 	<td>{bookmark.description}</td>
 	<td class="no-border">
+		<Modal>
+			<svelte:fragment slot="button" let:handleClick>
+				<Button type="button" size="small" styleType="success" on:click={handleClick}>
+					<Svg name="edit" width="1.2rem" height="1.2rem" />
+				</Button>
+			</svelte:fragment>
+			<svelte:fragment slot="form" let:onSuccess let:onCancel>
+				<Form {onSuccess} {onCancel} on:updateBookmark type="edit" defaultValue={bookmark} />
+			</svelte:fragment>
+		</Modal>
 		<Button type="button" size="small" styleType="danger" on:click={handleDelete}>
 			<Svg name="delete" width="1.2rem" height="1.2rem" />
 		</Button>

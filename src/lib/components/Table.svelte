@@ -14,7 +14,7 @@
 	</thead>
 	<tbody>
 		{#each bookmarks as bookmark}
-			<BookmarkRow {bookmark} on:deleteBookmark />
+			<BookmarkRow {bookmark} on:deleteBookmark on:updateBookmark />
 		{/each}
 	</tbody>
 </table>
