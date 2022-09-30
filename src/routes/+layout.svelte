@@ -53,7 +53,7 @@
 	}
 
 	section {
-		padding: 1rem;
+		padding: 0 1rem;
 		max-width: 50rem;
 		margin: 0 auto;
 	}

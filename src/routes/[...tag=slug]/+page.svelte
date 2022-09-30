@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Title from '$lib/components/Title.svelte';
 	import Table from '$lib/components/Table.svelte';
+	import Filters from '$lib/components/Filters.svelte';
 	import AddFormContainer from '$lib/components/AddFormContainer.svelte';
 	import { getName } from '$lib/utils/links';
 	import type { PageData } from './$types';
@@ -33,8 +34,10 @@
 	};
 </script>
 
-<Title>{data.slug ? getName(data.slug) : 'All bookmarks'}</Title>
+<Filters currentTag={data.slug} />
+
 <AddFormContainer tag={data.slug} on:addBookmark={addBookmark} />
+
 {#if filteredBookmarks.length > 0}
 	<Table
 		bookmarks={filteredBookmarks}
