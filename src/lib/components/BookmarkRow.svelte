@@ -62,5 +62,7 @@
 
 	.no-border {
 		border: none;
+		display: flex;
+		gap: 0.3rem;
 	}
 </style>

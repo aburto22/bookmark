@@ -15,8 +15,6 @@ const send = async <T>(
 		  }
 		: { method };
 
-	console.log(options);
-
 	try {
 		const res = await fetch(path, options);
 		const json = await res.json();
