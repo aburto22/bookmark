@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { del, put } from '$lib/utils/fetch';
+	import { del } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
 	import { createEventDispatcher } from 'svelte';
 	import Button from './Button.svelte';
-	import Form from './Form.svelte';
+	import EditForm from './EditForm.svelte';
 	import Modal from './Modal.svelte';
 	import Svg from './Svg.svelte';
 
@@ -39,7 +39,7 @@
 				</Button>
 			</svelte:fragment>
 			<svelte:fragment slot="form" let:onSuccess let:onCancel>
-				<Form {onSuccess} {onCancel} on:updateBookmark type="edit" defaultValue={bookmark} />
+				<EditForm {onSuccess} {onCancel} on:updateBookmark defaultValue={bookmark} />
 			</svelte:fragment>
 		</Modal>
 		<Button type="button" size="small" styleType="danger" on:click={handleDelete}>

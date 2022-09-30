@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-	import Form from './Form.svelte';
+	import AddForm from './AddForm.svelte';
 	import Modal from './Modal.svelte';
 	import Svg from './Svg.svelte';
 
@@ -15,7 +15,7 @@
 			</Button>
 		</svelte:fragment>
 		<svelte:fragment slot="form" let:onCancel let:onSuccess>
-			<Form defaultTag={tag} on:addBookmark {onSuccess} {onCancel} />
+			<AddForm defaultTag={tag} on:addBookmark {onSuccess} {onCancel} />
 		</svelte:fragment>
 	</Modal>
 </div>

@@ -1,104 +1,32 @@
 <script lang="ts">
 	import Button from './Button.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { parseTags } from '$lib/utils/form';
-	import type { BookmarkFormData } from 'src/types';
-	import { post, put } from '$lib/utils/fetch';
-	import type { Bookmark } from '@prisma/client';
 
 	type Dispatch = {
-		addBookmark: Bookmark;
-		closeForm: never;
-		updateBookmark: Bookmark;
+		cancel: never;
+		submit: never;
 	};
 
 	const dispatch = createEventDispatcher<Dispatch>();
 
-	export let type: 'create' | 'edit' = 'create';
-	export let defaultTag: string = '';
-	export let onCancel = () => {};
-	export let onSuccess = () => {};
-	export let defaultValue: BookmarkFormData & { id: string } = {
-		id: '',
-		name: '',
-		tags: [],
-		description: '',
-		url: ''
-	};
+	export let name: string;
+	export let description: string;
+	export let url: string;
+	export let tags: string;
+	export let error: string;
 
-	$: console.log(defaultTag);
-
-	let name = defaultValue.name || '';
-	let tags = defaultValue.tags?.join(', ') || defaultTag;
-	let description = defaultValue.description || '';
-	let url = defaultValue.url || '';
-	let error = '';
 	let input: HTMLInputElement;
 
 	onMount(() => {
 		input.focus();
 	});
 
-	const updateTags = (slug: string) => {
-		tags = defaultValue.tags?.join('') || slug;
-	};
-
-	$: updateTags(defaultTag);
-
-	const updateData = (bookmark: BookmarkFormData) => {
-		name = bookmark.name;
-		tags = bookmark.tags.join(', ') || defaultTag;
-		description = bookmark.description || '';
-		url = bookmark.url;
-	};
-
-	$: updateData(defaultValue);
-
-	const resetForm = () => {
-		name = defaultValue.name || '';
-		tags = defaultValue.tags?.join('') || defaultTag;
-		description = defaultValue.description || '';
-		url = defaultValue.url || '';
-		error = '';
-	};
-
 	const handleCancel = () => {
-		resetForm();
-		onCancel();
+		dispatch('cancel');
 	};
 
-	const handleSubmit = async () => {
-		const formData: BookmarkFormData = {
-			name,
-			tags: parseTags(tags),
-			description,
-			url
-		};
-
-		if (type === 'create') {
-			const res = await post<Bookmark>('/api/bookmarks', formData);
-
-			if (!res.success) {
-				error = res.message;
-				return;
-			}
-
-			dispatch('addBookmark', res.data);
-			resetForm();
-			onSuccess();
-			return;
-		}
-
-		const res = await put<Bookmark>(`/api/bookmarks/${defaultValue.id}`, formData);
-
-		if (!res.success) {
-			error = res.message;
-			return;
-		}
-
-		dispatch('updateBookmark', res.data);
-		resetForm();
-		onSuccess();
+	const handleSubmit = () => {
+		dispatch('submit');
 	};
 </script>
 
