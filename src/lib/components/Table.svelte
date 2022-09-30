@@ -28,6 +28,7 @@
 	}
 	table {
 		text-align: center;
+		margin: 0 auto;
 	}
 
 	table,
