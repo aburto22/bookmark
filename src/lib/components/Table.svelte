@@ -27,9 +27,7 @@
 		overflow-x: auto;
 	}
 	table {
-		width: 100%;
 		text-align: center;
-		min-width: max-content;
 	}
 
 	table,

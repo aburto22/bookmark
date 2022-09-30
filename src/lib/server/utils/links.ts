@@ -22,11 +22,10 @@ export const createBookmark = async (data: BookmarkFormData) =>
 		}
 	});
 
-export const updateBookmark = async (id: string, data: Bookmark) => {
+export const updateBookmark = async (id: string, data: Bookmark) =>
 	db.bookmark.update({
 		where: { id },
 		data
 	});
-};
 
 export const deleteBookmark = async (id: string) => db.bookmark.delete({ where: { id } });

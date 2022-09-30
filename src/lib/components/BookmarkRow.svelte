@@ -28,7 +28,7 @@
 </script>
 
 <tr>
-	<td><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
+	<td class="no-break"><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
 	<td>{bookmark.tags.join(', ')}</td>
 	<td>{bookmark.description}</td>
 	<td class="no-border">
@@ -57,12 +57,23 @@
 		padding: 0.7rem;
 		border: 1px solid var(--lightGray);
 		font-size: 0.9rem;
-		word-break: break-all;
 	}
 
 	.no-border {
 		border: none;
 		display: flex;
 		gap: 0.3rem;
+	}
+
+	.no-break {
+		white-space: nowrap;
+	}
+
+	a {
+		font-weight: 600;
+	}
+
+	a:hover {
+		text-decoration: underline;
 	}
 </style>
