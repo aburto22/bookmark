@@ -5,24 +5,31 @@
 	export let bookmarks: Bookmark[];
 </script>
 
-<table>
-	<thead>
-		<th>Name</th>
-		<th>Tags</th>
-		<th>Description</th>
-		<th class="no-border" />
-	</thead>
-	<tbody>
-		{#each bookmarks as bookmark}
-			<BookmarkRow {bookmark} on:deleteBookmark on:updateBookmark />
-		{/each}
-	</tbody>
-</table>
+<div>
+	<table>
+		<thead>
+			<th>Name</th>
+			<th>Tags</th>
+			<th>Description</th>
+			<th class="no-border" />
+		</thead>
+		<tbody>
+			{#each bookmarks as bookmark}
+				<BookmarkRow {bookmark} on:deleteBookmark on:updateBookmark />
+			{/each}
+		</tbody>
+	</table>
+</div>
 
 <style>
+	div {
+		max-width: 100%;
+		overflow-x: auto;
+	}
 	table {
 		width: 100%;
 		text-align: center;
+		min-width: max-content;
 	}
 
 	table,

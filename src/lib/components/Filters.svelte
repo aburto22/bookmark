@@ -23,7 +23,7 @@
 		gap: 0.5rem;
 		width: 100%;
 		max-width: 35rem;
-		margin: 0 auto 2.5rem;
+		margin: 0 auto 2rem;
 	}
 
 	li {
@@ -34,6 +34,7 @@
 		display: block;
 		padding: 0.7rem;
 		border-radius: 0.5rem;
+		transition: all 200ms;
 	}
 
 	a:hover {
