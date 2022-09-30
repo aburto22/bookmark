@@ -17,13 +17,20 @@ const send = async <T>(
 
 	console.log(options);
 
-	const res = await fetch(path, options);
-	const json = await res.json();
+	try {
+		const res = await fetch(path, options);
+		const json = await res.json();
 
-	if (!res.ok) {
-		return { ...json, success: false };
+		if (!res.ok) {
+			return { ...json, success: false };
+		}
+		return { data: json, success: true };
+	} catch (err) {
+		if (err instanceof Error) {
+			return { message: err.message, success: false };
+		}
+		return { message: 'An error has occurred', success: false };
 	}
-	return { data: json, success: true };
 };
 
 export const get = async <T>(path: string) => send<T>(path);
