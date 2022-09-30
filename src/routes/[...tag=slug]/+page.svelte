@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Title from '$lib/components/Title.svelte';
 	import Table from '$lib/components/Table.svelte';
 	import Filters from '$lib/components/Filters.svelte';
 	import AddFormContainer from '$lib/components/AddFormContainer.svelte';
-	import { getName } from '$lib/utils/links';
 	import type { PageData } from './$types';
 	import type { Bookmark } from '@prisma/client';
 	import bookmarks from '$lib/stores/bookmarks';

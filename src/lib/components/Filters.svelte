@@ -44,6 +44,7 @@
 	.current {
 		background-color: var(--yellow);
 		color: var(--darkBlue);
+		font-weight: 600;
 	}
 
 	.current:hover {
