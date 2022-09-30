@@ -1,6 +1,10 @@
 type FetchResponse<T> = { success: true; data: T } | { message: string; success: false };
 
-const send = async <T>(path: string, method = 'GET', data = {}): Promise<FetchResponse<T>> => {
+const send = async <T>(
+	path: string,
+	method = 'GET',
+	data?: Record<string, string>
+): Promise<FetchResponse<T>> => {
 	const options = data
 		? {
 				method,
@@ -10,6 +14,8 @@ const send = async <T>(path: string, method = 'GET', data = {}): Promise<FetchRe
 				body: JSON.stringify(data)
 		  }
 		: { method };
+
+	console.log(options);
 
 	const res = await fetch(path, options);
 	const json = await res.json();

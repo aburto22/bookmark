@@ -1,14 +1,18 @@
 import type { PageLoad } from './$types';
-import bookmarksStore from '$lib/stores/bookmarks';
-import { get } from 'svelte/store';
 import { error } from '@sveltejs/kit';
+import type { Bookmark } from '@prisma/client';
 
-export const load: PageLoad = async ({ params }) => {
-	const bookmarks = get(bookmarksStore);
+export const load: PageLoad = async ({ params, fetch }) => {
 	const slug = params.tag;
-	const filteredBookmarks = slug ? bookmarks.filter((b) => b.tags.includes(slug)) : bookmarks;
+	const res = await fetch(`/api/bookmarks?tag=${slug}`);
 
-	if (slug && filteredBookmarks.length === 0) {
+	if (!res.ok) {
+		throw error(500, res.statusText);
+	}
+
+	const bookmarks: Bookmark[] = await res.json();
+
+	if (slug && bookmarks.length === 0) {
 		throw error(404, 'Page not found');
 	}
 

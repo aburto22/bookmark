@@ -1,7 +1,7 @@
 import { derived } from 'svelte/store';
-import bookmarksStore from '$lib/stores/bookmarks';
+import bookmarks from '$lib/stores/bookmarks';
 import { getTags } from '$lib/utils/links';
 
-const store = derived(bookmarksStore, ($bookmarks) => getTags($bookmarks));
+const tags = derived(bookmarks, ($bookmarks) => getTags($bookmarks));
 
-export default store;
+export default tags;

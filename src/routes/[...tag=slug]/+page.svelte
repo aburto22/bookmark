@@ -5,24 +5,24 @@
 	import { getName } from '$lib/utils/links';
 	import type { PageData } from './$types';
 	import type { Bookmark } from '@prisma/client';
-	import bookmarksStore from '$lib/stores/bookmarks';
+	import bookmarks from '$lib/stores/bookmarks';
 
 	export let data: PageData;
 
 	$: filteredBookmarks = data.slug
-		? $bookmarksStore.filter((b) => b.tags.includes(data.slug))
-		: $bookmarksStore;
+		? $bookmarks.filter((b) => b.tags.includes(data.slug))
+		: $bookmarks;
 
 	const addBookmark = async (event: CustomEvent<Bookmark>) => {
-		bookmarksStore.update((current) => [event.detail, ...current]);
+		bookmarks.update((current) => [event.detail, ...current]);
 	};
 
 	const deleteBookmark = async (event: CustomEvent<string>) => {
-		bookmarksStore.update((current) => current.filter((b) => b.id != event.detail));
+		bookmarks.update((current) => current.filter((b) => b.id != event.detail));
 	};
 
 	const updateBookmark = async (event: CustomEvent<Bookmark>) => {
-		bookmarksStore.update((current) =>
+		bookmarks.update((current) =>
 			current.map((b) => {
 				if (b.id === event.detail.id) {
 					return event.detail;
