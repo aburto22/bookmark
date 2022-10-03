@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
+		"@types/bcrypt": "^5.0.0",
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -35,6 +36,7 @@
 	"dependencies": {
 		"@fontsource/open-sans": "^4.5.11",
 		"@prisma/client": "^4.3.1",
+		"bcrypt": "^5.0.1",
 		"zod": "^3.19.1"
 	}
 }
