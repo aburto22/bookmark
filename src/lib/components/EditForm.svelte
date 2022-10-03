@@ -4,6 +4,7 @@
 	import { parseTags } from '$lib/utils/form';
 	import type { BookmarkFormData } from 'src/types';
 	import { put } from '$lib/utils/fetch';
+	import session from '$lib/stores/session';
 	import type { Bookmark } from '@prisma/client';
 
 	type Dispatch = {
@@ -32,10 +33,16 @@
 	$: updateData(defaultValue);
 
 	const handleSubmit = async () => {
+		if (!$session) {
+			error = 'User not logged-in.';
+			return;
+		}
+
 		const formData: BookmarkFormData = {
 			name,
 			tags: parseTags(tags),
 			description,
+			ownerId: $session.id,
 			url
 		};
 

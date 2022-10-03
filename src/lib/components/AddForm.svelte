@@ -15,7 +15,7 @@
 
 	export let onSuccess = () => {};
 	export let onCancel = () => {};
-	export let defaultTag: string = '';
+	export let defaultTag = '';
 
 	let name = '';
 	let tags = defaultTag;

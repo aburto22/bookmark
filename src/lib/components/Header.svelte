@@ -1,7 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
-	import session from '$lib/stores/session';
-	import Button from './Button.svelte';
 	import Svg from './Svg.svelte';
 </script>
 

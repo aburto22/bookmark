@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
 	import { post } from '$lib/utils/fetch';
-	import type { User } from '@prisma/client';
 	import { onMount } from 'svelte';
 	import session from '$lib/stores/session';
 	import { goto } from '$app/navigation';
