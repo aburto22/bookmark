@@ -13,7 +13,7 @@
 	{#if $session}
 		<span>
 			You are logged-in,
-			<button on:click={handleLogout} type="button">Click here to Logout</button>
+			<button on:click={handleLogout} type="button">click here to Logout</button>
 		</span>
 	{:else}
 		<a href="/login">Admin login</a>
