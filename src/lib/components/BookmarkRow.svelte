@@ -1,4 +1,5 @@
 <script lang="ts">
+	import session from '$lib/stores/session';
 	import { del } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
 	import { createEventDispatcher } from 'svelte';
@@ -31,21 +32,23 @@
 	<td class="no-break"><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
 	<td>{bookmark.tags.join(', ')}</td>
 	<td>{bookmark.description}</td>
-	<td class="no-border">
-		<Modal>
-			<svelte:fragment slot="button" let:handleClick>
-				<Button type="button" size="small" styleType="success" on:click={handleClick}>
-					<Svg name="edit" width="1.2rem" height="1.2rem" />
-				</Button>
-			</svelte:fragment>
-			<svelte:fragment slot="form" let:onSuccess let:onCancel>
-				<EditForm {onSuccess} {onCancel} on:updateBookmark defaultValue={bookmark} />
-			</svelte:fragment>
-		</Modal>
-		<Button type="button" size="small" styleType="danger" on:click={handleDelete}>
-			<Svg name="delete" width="1.2rem" height="1.2rem" />
-		</Button>
-	</td>
+	{#if $session}
+		<td class="no-border">
+			<Modal>
+				<svelte:fragment slot="button" let:handleClick>
+					<Button type="button" size="small" styleType="success" on:click={handleClick}>
+						<Svg name="edit" width="1.2rem" height="1.2rem" />
+					</Button>
+				</svelte:fragment>
+				<svelte:fragment slot="form" let:onSuccess let:onCancel>
+					<EditForm {onSuccess} {onCancel} on:updateBookmark defaultValue={bookmark} />
+				</svelte:fragment>
+			</Modal>
+			<Button type="button" size="small" styleType="danger" on:click={handleDelete}>
+				<Svg name="delete" width="1.2rem" height="1.2rem" />
+			</Button>
+		</td>
+	{/if}
 </tr>
 
 <style>

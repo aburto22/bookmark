@@ -17,7 +17,6 @@ export const createBookmark = async (data: BookmarkFormData) =>
 	db.bookmark.create({
 		data: {
 			...data,
-			ownerId: '632d8dea3f1cbc1dd741ea95',
 			createdAt: new Date().toISOString()
 		}
 	});

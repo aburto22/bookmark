@@ -23,7 +23,7 @@
 	};
 
 	const handleSubmit = async () => {
-		const res = await post<User>('/api/auth/register', { email, password, name });
+		const res = await post<{ id: string }>('/api/auth/register', { email, password, name });
 
 		if (!res.success) {
 			error = res.message;

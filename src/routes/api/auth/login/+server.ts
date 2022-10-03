@@ -20,5 +20,5 @@ export const POST: RequestHandler = async ({ request }) => {
 		throw error(403, 'Invalid password');
 	}
 
-	return json(user);
+	return json({ id: user.id });
 };

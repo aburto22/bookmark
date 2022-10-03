@@ -5,7 +5,8 @@ const bookmarkSchema = z.object({
 	name: z.string().max(20),
 	url: z.string().url(),
 	description: z.optional(z.string().max(50)),
-	tags: z.array(z.string().max(15))
+	tags: z.array(z.string().max(15)),
+	ownerId: z.string()
 });
 
 export const parseTags = (tagsString: string | undefined) => {

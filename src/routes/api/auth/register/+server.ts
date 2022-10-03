@@ -26,5 +26,5 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 	});
 
-	return json(newUser);
+	return json({ id: newUser.id });
 };

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Bookmark } from '@prisma/client';
 	import BookmarkRow from './BookmarkRow.svelte';
+	import session from '$lib/stores/session';
 
 	export let bookmarks: Bookmark[];
 </script>
@@ -11,7 +12,9 @@
 			<th>Name</th>
 			<th>Tags</th>
 			<th>Description</th>
-			<th class="no-border" />
+			{#if $session}
+				<th class="no-border" />
+			{/if}
 		</thead>
 		<tbody>
 			{#each bookmarks as bookmark}

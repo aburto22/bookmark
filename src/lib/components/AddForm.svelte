@@ -3,6 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { parseTags } from '$lib/utils/form';
 	import type { BookmarkFormData } from 'src/types';
+	import session from '$lib/stores/session';
 	import { post } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
 
@@ -29,10 +30,16 @@
 	$: updateTags(defaultTag);
 
 	const handleSubmit = async () => {
+		if (!$session) {
+			error = 'User not logged-in.';
+			return;
+		}
+
 		const formData: BookmarkFormData = {
 			name,
 			tags: parseTags(tags),
 			description,
+			ownerId: $session.id,
 			url
 		};
 
