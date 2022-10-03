@@ -39,11 +39,11 @@
 <form on:submit|preventDefault={handleSubmit}>
 	<label for="email">
 		Email:
-		<input type="email" bind:this={input} bind:value={email} required />
+		<input type="email" bind:this={input} bind:value={email} required autocomplete="username" />
 	</label>
 	<label for="password">
 		Password:
-		<input type="password" bind:value={password} required />
+		<input type="password" bind:value={password} required autocomplete="current-password" />
 	</label>
 	{#if error}
 		<p>{error}</p>

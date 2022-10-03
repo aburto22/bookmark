@@ -26,7 +26,7 @@
 	</dialog>
 {/if}
 
-<style>
+<style lang="scss">
 	.background {
 		position: fixed;
 		top: 0;
@@ -44,9 +44,9 @@
 
 	dialog {
 		width: 25rem;
-		max-width: 100%;
+		max-width: 90%;
 		background-color: var(--black);
-		padding: 2rem;
+		padding: 2rem 1rem;
 		border-radius: 0.5rem;
 		z-index: 50;
 		position: fixed;
@@ -54,5 +54,9 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		display: block;
+
+		@media (min-width: 40rem) {
+			padding: 2rem;
+		}
 	}
 </style>
