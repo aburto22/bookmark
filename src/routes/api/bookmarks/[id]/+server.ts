@@ -7,8 +7,6 @@ export const PUT: RequestHandler = async ({ params, request }) => {
 	const { id } = params;
 	const data: Bookmark = await request.json();
 
-	console.log(id, data);
-
 	try {
 		const bookmark = await updateBookmark(id, data);
 		return json(bookmark);
