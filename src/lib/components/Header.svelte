@@ -6,7 +6,7 @@
 	<a href="/" class="logo">
 		<h1>
 			<Svg name="logo" height="2rem" width="2rem" />
-			<span class="only-mobile">Link bookmark</span>
+			Link bookmark
 		</h1>
 	</a>
 </header>
@@ -29,15 +29,5 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.3rem;
-	}
-
-	.only-mobile {
-		display: none;
-	}
-
-	@media (min-width: 40rem) {
-		.only-mobile {
-			display: unset;
-		}
 	}
 </style>
