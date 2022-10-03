@@ -3,6 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import bookmarks from '$lib/stores/bookmarks';
 	import type { LayoutData } from './$types';
+	import Footer from '$lib/components/Footer.svelte';
 
 	export let data: LayoutData;
 	$: bookmarks.set(data.bookmarks);
@@ -16,7 +17,7 @@
 	</section>
 </main>
 
-<footer>Created by Alejandro Aburto Salazar</footer>
+<Footer />
 
 <style>
 	:global(:root) {
@@ -56,13 +57,5 @@
 	section {
 		max-width: 50rem;
 		margin: 0 auto;
-	}
-
-	footer {
-		margin-top: auto;
-		text-align: center;
-		padding: 1rem;
-		font-size: 0.7rem;
-		color: var(--lightGray);
 	}
 </style>
