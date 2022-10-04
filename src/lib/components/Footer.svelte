@@ -2,8 +2,10 @@
 	import session from '$lib/stores/session';
 	import { goto } from '$app/navigation';
 	import Svg from './Svg.svelte';
+	import { post } from '$lib/utils/fetch';
 
 	const handleLogout = async () => {
+		await post('/api/auth/logout');
 		session.set(null);
 		await goto('/');
 	};

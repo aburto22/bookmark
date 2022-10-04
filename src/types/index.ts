@@ -14,3 +14,8 @@ export type RegisterFormData = {
 	name: string;
 	password: string;
 };
+
+export type Session = {
+	sessionId: string;
+	userId: string;
+};
