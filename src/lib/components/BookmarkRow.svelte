@@ -1,8 +1,8 @@
 <script lang="ts">
-	import session from '$lib/stores/session';
 	import { del } from '$lib/utils/fetch';
 	import type { Bookmark } from '@prisma/client';
 	import { createEventDispatcher } from 'svelte';
+	import { page } from '$app/stores';
 	import Button from './Button.svelte';
 	import EditForm from './EditForm.svelte';
 	import Modal from './Modal.svelte';
@@ -13,6 +13,8 @@
 	type Dispatch = {
 		deleteBookmark: string;
 	};
+
+	const user = $page.data.user;
 
 	const dispatch = createEventDispatcher<Dispatch>();
 
@@ -32,7 +34,7 @@
 	<td class="no-break"><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
 	<td>{bookmark.tags.join(', ')}</td>
 	<td>{bookmark.description}</td>
-	{#if $session}
+	{#if user}
 		<td class="no-border">
 			<Modal>
 				<svelte:fragment slot="button" let:handleClick>

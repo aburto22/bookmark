@@ -2,7 +2,6 @@
 	import Button from '$lib/components/Button.svelte';
 	import { post } from '$lib/utils/fetch';
 	import { onMount } from 'svelte';
-	import session from '$lib/stores/session';
 	import { goto, invalidate } from '$app/navigation';
 	let input: HTMLInputElement;
 	let email = '';
@@ -27,7 +26,6 @@
 			return;
 		}
 
-		session.set(res.data);
 		await invalidate('session:user');
 		await goto('/');
 		resetForm();

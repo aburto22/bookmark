@@ -4,12 +4,14 @@
 	import { parseTags } from '$lib/utils/form';
 	import type { BookmarkFormData } from 'src/types';
 	import { put } from '$lib/utils/fetch';
-	import session from '$lib/stores/session';
 	import type { Bookmark } from '@prisma/client';
+	import { page } from '$app/stores';
 
 	type Dispatch = {
 		updateBookmark: Bookmark;
 	};
+
+	const user = $page.data.user;
 
 	const dispatch = createEventDispatcher<Dispatch>();
 
@@ -33,7 +35,7 @@
 	$: updateData(defaultValue);
 
 	const handleSubmit = async () => {
-		if (!$session) {
+		if (!user) {
 			error = 'User not logged-in.';
 			return;
 		}
@@ -42,7 +44,7 @@
 			name,
 			tags: parseTags(tags),
 			description,
-			ownerId: $session.id,
+			ownerId: user.id,
 			url
 		};
 

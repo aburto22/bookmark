@@ -6,7 +6,6 @@
 	import type { PageData } from './$types';
 	import type { Bookmark } from '@prisma/client';
 	import bookmarks from '$lib/stores/bookmarks';
-	import session from '$lib/stores/session';
 
 	export let data: PageData;
 
@@ -50,7 +49,7 @@
 
 <Filters currentTag={data.slug} />
 
-{#if $session?.id}
+{#if data.user}
 	<AddFormContainer tag={data.slug} on:addBookmark={addBookmark} />
 {/if}
 

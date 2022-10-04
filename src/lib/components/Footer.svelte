@@ -1,5 +1,4 @@
 <script lang="ts">
-	import session from '$lib/stores/session';
 	import { goto, invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import Svg from './Svg.svelte';
@@ -8,7 +7,6 @@
 	const handleLogout = async () => {
 		await post('/api/auth/logout');
 		await invalidate('session:user');
-		session.set(null);
 		await goto('/');
 	};
 </script>

@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { Bookmark } from '@prisma/client';
 	import BookmarkRow from './BookmarkRow.svelte';
-	import session from '$lib/stores/session';
 
 	export let bookmarks: Bookmark[];
+
+	const user = $page.data.user;
 </script>
 
 <div>
@@ -12,7 +14,7 @@
 			<th>Name</th>
 			<th>Tags</th>
 			<th>Description</th>
-			{#if $session}
+			{#if user}
 				<th class="no-border" />
 			{/if}
 		</thead>
