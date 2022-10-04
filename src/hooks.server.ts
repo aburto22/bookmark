@@ -1,16 +1,11 @@
 import type { Handle } from '@sveltejs/kit';
+import { getUserInfoFromSession } from '$lib/server/sessions';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	let userid = event.cookies.get('userid');
+	const sessionId = event.cookies.get('session');
 
-	if (!userid) {
-		// if this is the first time the user has visited this app,
-		// set a cookie so that we recognise them when they return
-		userid = crypto.randomUUID();
-		event.cookies.set('userid', userid, { path: '/' });
-	}
+	event.locals.user = await getUserInfoFromSession(sessionId);
 
-	event.locals.userid = userid;
-
-	return resolve(event);
+	const response = await resolve(event);
+	return response;
 };

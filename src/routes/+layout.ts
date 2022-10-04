@@ -2,10 +2,11 @@ import type { Bookmark } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import type { LayoutLoad } from './$types';
 
-export const load: LayoutLoad = async ({ fetch, depends }) => {
+export const load: LayoutLoad = async ({ fetch, depends, data }) => {
 	depends('load:bookmarks');
 	try {
 		const res = await fetch('/api/bookmarks');
+		const { user } = data;
 
 		if (!res.ok) {
 			throw error(500, res.statusText);
@@ -14,7 +15,8 @@ export const load: LayoutLoad = async ({ fetch, depends }) => {
 		const bookmarks: Bookmark[] = await res.json();
 
 		return {
-			bookmarks
+			bookmarks,
+			user
 		};
 	} catch (err) {
 		if (err instanceof Error) {

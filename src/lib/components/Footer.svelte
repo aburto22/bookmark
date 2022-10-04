@@ -1,11 +1,13 @@
 <script lang="ts">
 	import session from '$lib/stores/session';
-	import { goto } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
+	import { page } from '$app/stores';
 	import Svg from './Svg.svelte';
 	import { post } from '$lib/utils/fetch';
 
 	const handleLogout = async () => {
 		await post('/api/auth/logout');
+		await invalidate('session:user');
 		session.set(null);
 		await goto('/');
 	};
@@ -13,7 +15,7 @@
 
 <footer>
 	Created by Alejandro Aburto Salazar
-	{#if $session}
+	{#if $page.data.user}
 		<span>
 			You are logged-in,
 			<button on:click={handleLogout} type="button">click here to Logout</button>

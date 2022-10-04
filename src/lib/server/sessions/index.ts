@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import type { Session } from 'src/types';
+import db from '../db';
 
 let sessions: Session[] = [];
 
@@ -10,8 +11,6 @@ export const createSession = async (userId: string) => {
 	};
 
 	sessions = [...sessions, newSession];
-
-	console.log(sessions);
 
 	return newSession;
 };
@@ -30,4 +29,20 @@ export const removeSession = async (sessionId: string) => {
 	sessions = sessions.filter((s) => s.sessionId !== sessionId);
 
 	return session;
+};
+
+export const getUserInfoFromSession = async (sessionId: string | undefined) => {
+	if (!sessionId) {
+		return null;
+	}
+
+	const session = await getSession(sessionId);
+
+	if (!session) {
+		return null;
+	}
+
+	return db.user.findUnique({
+		where: { id: session.userId }
+	});
 };
