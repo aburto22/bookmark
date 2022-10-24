@@ -6,7 +6,7 @@
 	<a href="/" class="logo">
 		<h1>
 			<Svg name="logo" height="2rem" width="2rem" />
-			Link bookmark
+			Link Bookmarks
 		</h1>
 	</a>
 </header>

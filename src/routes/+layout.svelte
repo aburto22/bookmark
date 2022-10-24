@@ -9,6 +9,10 @@
 	$: bookmarks.set(data.bookmarks);
 </script>
 
+<svelte:head>
+	<html lang="en" />
+</svelte:head>
+
 <Header />
 
 <main>

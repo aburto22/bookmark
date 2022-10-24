@@ -6,12 +6,15 @@
 	import type { PageData } from './$types';
 	import type { Bookmark } from '@prisma/client';
 	import bookmarks from '$lib/stores/bookmarks';
+	import { getName } from '$lib/utils/links';
 
 	export let data: PageData;
 
 	$: filteredBookmarks = data.slug
 		? $bookmarks.filter((b) => b.tags.includes(data.slug))
 		: $bookmarks;
+
+	$: title = data.slug ? `- ${getName(data.slug)}` : '';
 
 	const addBookmark = async (event: CustomEvent<Bookmark>) => {
 		bookmarks.update((current) => [event.detail, ...current]);
@@ -46,6 +49,10 @@
 		invalidate('load:bookmarks');
 	};
 </script>
+
+<svelte:head>
+	<title>Link Bookmarks {title}</title>
+</svelte:head>
 
 <Filters currentTag={data.slug} />
 

@@ -32,6 +32,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Link Bookmarks - Login</title>
+</svelte:head>
+
 <h1>Login</h1>
 
 <form on:submit|preventDefault={handleSubmit}>

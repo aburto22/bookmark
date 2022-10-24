@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Link Bookmarks - About</title>
+</svelte:head>
+
 <section>
 	<h1>About Me</h1>
 	<p>Hi! Thanks for cheking this website!</p>
