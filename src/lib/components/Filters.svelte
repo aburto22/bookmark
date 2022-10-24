@@ -20,7 +20,7 @@
 		checkHeight();
 	});
 
-	$: heightStyle = `--height: ${height}px;`;
+	$: style = `--height: ${height}px;`;
 
 	const handleClick = () => {
 		areFiltersOpen = !areFiltersOpen;
@@ -30,7 +30,7 @@
 <svelte:window on:resize={checkHeight} />
 
 <div>
-	<ul id="filter-container" class:expanded={areFiltersOpen} style={heightStyle} bind:this={list}>
+	<ul class:expanded={areFiltersOpen} {style} bind:this={list}>
 		{#each $tags as tag}
 			<li>
 				<a class:current={currentTag === tag} href={currentTag === tag ? '/' : `${getLink(tag)}`}>
