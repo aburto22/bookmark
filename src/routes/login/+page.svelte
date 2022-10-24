@@ -53,10 +53,9 @@
 	<Button type="submit">Login</Button>
 </form>
 
-<div>
+<!-- <div>
 	<a href="/register">Click here to register</a>
-</div>
-
+</div> -->
 <style>
 	h1 {
 		text-align: center;
@@ -98,12 +97,12 @@
 		margin-bottom: 0.5rem;
 	}
 
-	div {
+	/* div {
 		border-top: 1px solid var(--yellow);
 		padding-top: 1rem;
 		text-align: center;
 		max-width: 100%;
 		width: 18rem;
 		margin: 2rem auto 0;
-	}
+	} */
 </style>

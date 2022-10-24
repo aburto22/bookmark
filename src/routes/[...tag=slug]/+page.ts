@@ -7,7 +7,7 @@ export const load: PageLoad = async ({ params, parent }) => {
 	const filteredBookmarks = bookmarks.filter((b) => b.tags.includes(slug));
 
 	if (slug && filteredBookmarks.length === 0) {
-		throw error(404, 'Page not found');
+		throw error(404, 'Not found');
 	}
 
 	return {
