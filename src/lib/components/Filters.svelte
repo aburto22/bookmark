@@ -34,7 +34,7 @@
 		display: block;
 		padding: 0.7rem;
 		border-radius: 0.5rem;
-		transition: all 200ms;
+		transition: all 50ms;
 	}
 
 	a:hover {

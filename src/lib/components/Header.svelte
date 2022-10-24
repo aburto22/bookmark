@@ -12,6 +12,10 @@
 </header>
 
 <style lang="scss">
+	a:hover {
+		color: var(--yellow);
+	}
+
 	header {
 		padding: 1rem;
 		display: flex;

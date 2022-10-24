@@ -43,6 +43,12 @@
 		gap: 0.3rem;
 	}
 
+	div {
+		display: flex;
+		gap: 0.3rem;
+		justify-content: center;
+	}
+
 	a,
 	button {
 		color: var(--lightGray);
