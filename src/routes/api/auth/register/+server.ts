@@ -7,6 +7,8 @@ import { createSession } from '$lib/server/sessions';
 const saltRounds = 10;
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
+	throw error(404, 'Not found.');
+
 	const { email, name, password }: RegisterFormData = await request.json();
 
 	const user = await db.user.findUnique({
