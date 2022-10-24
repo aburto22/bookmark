@@ -60,8 +60,8 @@
 		gap: 0.5rem;
 		width: 100%;
 		max-width: 35rem;
-		margin: 0 auto 1rem;
-		max-height: 2.5rem;
+		margin: 0 auto 2rem;
+		max-height: 2.4rem;
 		overflow: hidden;
 		transition: max-height 200ms;
 
