@@ -37,7 +37,6 @@
 		"@fontsource/open-sans": "^4.5.11",
 		"@prisma/client": "^4.3.1",
 		"bcrypt": "^5.0.1",
-		"nanoid": "^4.0.0",
 		"zod": "^3.19.1"
 	}
 }
