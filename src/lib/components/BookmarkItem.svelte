@@ -14,7 +14,7 @@
 		deleteBookmark: string;
 	};
 
-	const user = $page.data.user;
+	$: user = $page.data.user;
 
 	const dispatch = createEventDispatcher<Dispatch>();
 
@@ -30,12 +30,12 @@
 	};
 </script>
 
-<tr>
-	<td class="no-break"><a href={bookmark.url} target="_blank">{bookmark.name}</a></td>
-	<td>{bookmark.tags.join(', ')}</td>
-	<td>{bookmark.description}</td>
+<div>
+	<p><a href={bookmark.url} target="_blank">{bookmark.name}</a></p>
+	<p class="tags">{bookmark.tags.join(', ')}</p>
+	<p class="description">{bookmark.description}</p>
 	{#if user}
-		<td class="no-border">
+		<span>
 			<Modal>
 				<svelte:fragment slot="button" let:handleClick>
 					<Button type="button" size="small" styleType="success" on:click={handleClick}>
@@ -49,29 +49,71 @@
 			<Button type="button" size="small" styleType="danger" on:click={handleDelete}>
 				<Svg name="delete" width="1.2rem" height="1.2rem" />
 			</Button>
-		</td>
+		</span>
 	{/if}
-</tr>
+</div>
 
-<style>
-	tr,
-	td {
-		border-collapse: collapse;
-	}
-	td {
-		padding: 0.7rem;
+<style lang="scss">
+	div {
+		display: flex;
+		flex-direction: column;
+		width: 18rem;
+		max-width: 100%;
+		gap: 0.2rem;
+		padding: 0.5rem;
 		border: 1px solid var(--lightGray);
-		font-size: 0.9rem;
+
+		@media (min-width: 50rem) {
+			gap: 0;
+			display: grid;
+			grid-template-columns: 0.6fr 0.6fr 1fr auto;
+			border: unset;
+			padding: unset;
+			width: unset;
+		}
 	}
 
-	.no-border {
-		border: none;
+	p {
+		display: flex;
+		align-items: center;
+		font-size: 0.9rem;
+		line-height: 1.2rem;
+		word-break: break-word;
+
+		@media (min-width: 50rem) {
+			padding: 0.7rem;
+			border: 1px solid var(--lightGray);
+		}
+	}
+
+	.tags {
+		font-size: 0.8rem;
+		color: var(--lightGray);
+
+		@media (min-width: 50rem) {
+			font-size: inherit;
+			color: inherit;
+		}
+	}
+
+	.description {
+		font-size: 0.8rem;
+
+		@media (min-width: 50rem) {
+			font-size: inherit;
+		}
+	}
+
+	span {
+		padding-left: 0.5rem;
+		align-self: center;
 		display: flex;
 		gap: 0.3rem;
-	}
+		margin-top: auto;
 
-	.no-break {
-		white-space: nowrap;
+		@media (min-width: 50rem) {
+			margin-top: unset;
+		}
 	}
 
 	a {

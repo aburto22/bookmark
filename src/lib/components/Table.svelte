@@ -1,58 +1,56 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { Bookmark } from '@prisma/client';
-	import BookmarkRow from './BookmarkRow.svelte';
+	import BookmarkItem from './BookmarkItem.svelte';
 
 	export let bookmarks: Bookmark[];
 
-	const user = $page.data.user;
+	$: user = $page.data.user;
 </script>
 
-<div>
-	<table>
-		<thead>
-			<th>Name</th>
-			<th>Tags</th>
-			<th>Description</th>
-			{#if user}
-				<th class="no-border" />
-			{/if}
-		</thead>
-		<tbody>
-			{#each bookmarks as bookmark}
-				<BookmarkRow {bookmark} on:deleteBookmark on:updateBookmark />
-			{/each}
-		</tbody>
-	</table>
+<div class="container">
+	<div class="header">
+		<p>Link</p>
+		<p>Tags</p>
+		<p>Description</p>
+		{#if user}
+			<span />
+		{/if}
+	</div>
+	{#each bookmarks as bookmark}
+		<BookmarkItem {bookmark} on:deleteBookmark on:updateBookmark />
+	{/each}
 </div>
 
-<style>
-	div {
-		max-width: 100%;
-		overflow-x: auto;
+<style lang="scss">
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+		width: 100%;
+
+		@media (min-width: 50rem) {
+			display: block;
+		}
 	}
-	table {
+
+	.header {
+		display: none;
+
+		@media (min-width: 50rem) {
+			display: grid;
+			grid-template-columns: 0.6fr 0.6fr 1fr auto;
+		}
+	}
+
+	p {
 		text-align: center;
-		margin: 0 auto;
-	}
-
-	table,
-	thead,
-	th,
-	tbody {
-		border-collapse: collapse;
-	}
-
-	th {
-		padding: 0.8rem;
-		border: 1px solid var(--lightGray);
+		padding: 0.5rem;
 		color: var(--lightGray);
-		font-size: 0.8rem;
-		font-weight: 700;
 	}
 
-	.no-border {
-		border: none;
-		width: 0;
+	span {
+		width: 70.4px;
 	}
 </style>
