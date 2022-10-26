@@ -68,6 +68,6 @@ Known bugs:
 
 ## Authors
 
-Bookmark links was created by myself:
-
-- Alejandro Aburto Salazar - [GitHub](https://github.com/aburto22)
+| [![Alejandro Aburto Salazar](https://avatars.githubusercontent.com/u/75444835?v=4&s=144)](https://github.com/aburto22) |
+| ---------------------------------------------------------------------------------------------------------------------- |
+| [Alejandro Aburto Salazar](https://github.com/aburto22)                                                                |
